@@ -803,18 +803,20 @@ body {
 
 
 
-.boxMail{
+.boxMail {
     position: fixed;
     background: rgb(0, 0, 0, 0.8);
     width: 100%;
     height: 100%;
-    opacity: 0;
     top: 0;
+    left: 0;
+    /* ADD THIS LINE to be safe */
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: scale(0.3);
+    opacity: 0;
     visibility: hidden;
+    transform: scale(0.3);
     transition: all 0.5s;
     z-index: 100000000;
 }
@@ -823,14 +825,15 @@ body {
     visibility: visible;
     transform: scale(1);
 }
-.boxMail .boxMail-container{
-    position: absolute;
+.boxMail .boxMail-container {
+    position: relative;
+    /* CHANGED TO RELATIVE */
     width: 750px;
     height: 500px;
+    background: transparent;
     display: flex;
     margin: 0;
     transform: scale(0.9);
-    -webkit-perspective: 2000px;
     perspective: 2000px;
     transition: all 0.5s;
 }
