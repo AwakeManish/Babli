@@ -889,17 +889,26 @@ body {
     width: calc(100%);
     height: calc(100%);
 }
-.boxMail .boxMail-container .card1 h3{
+.boxMail .boxMail-container .card1 h3 {
     font-family: 'Dancing Script', cursive;
-    font-size: 40px;
+    
+    /* --- CHANGE 1: Make font size responsive --- */
+    /* This means: Minimum 20px, Preferred 5% of screen width, Maximum 40px */
+    font-size: clamp(20px, 5vw, 40px); 
+
     text-transform: uppercase;
-    width: 80%;
+
+    /* --- CHANGE 2: Give it more room --- */
+    width: 100%; /* Changed from 80% so it has more space */
+    
     text-align: center;
     line-height: 1.5;
-    letter-spacing: 5px;
+    
+    /* --- CHANGE 3: Reduce spacing on small screens --- */
+    letter-spacing: clamp(1px, 1vw, 5px); 
+    
     transform: rotate(-5deg);
-    text-shadow: 0 0 5px white,
-                0 0 10px white;
+    text-shadow: 0 0 5px white, 0 0 10px white;
 }
 .boxMail .boxMail-container .card2{
     position: relative;
