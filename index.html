@@ -187,14 +187,27 @@
     // REPLACE YOUR EXISTING $("#btn__letter").on("click"...) WITH THIS:
 
         $("#btn__letter").on("click", function () {
-            // 1. Show the modal instantly
+        
+        // 1. Ask the user for the code
+        var userCode = prompt("🔒 Please enter the secret code to open:");
+
+        // 2. Check if the code matches "manish"
+        // .toLowerCase() ensures it works even if they type "Manish" or "MANISH"
+        if (userCode && userCode.toLowerCase() === "manish") {
+            
+            // --- CODE IS CORRECT: Show the card ---
             $(".boxMail").addClass("active");
 
-            // 2. Wait 1 seconds (1000ms), then open the card automatically
+            // Wait 1 second, then open the envelope
             setTimeout(function () {
                 $(".boxMail-container").addClass("open");
             }, 1000);
-        });
+
+        } else {
+            // --- CODE IS WRONG: Show error ---
+            alert("❌ Invalid Code! Access Denied.");
+        }
+    });
 
     $(".close").on("click", function () {
         clearInterval(intervalContent)
