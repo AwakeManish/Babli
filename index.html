@@ -192,24 +192,17 @@
 
     var intervalContent;
     var intervalTitle;
-    $("#btn__letter").on("click", function () {
-    // Show letter box and border instantly
-    $(".box__letter").show();
-    $(".letter__border").show();
+    // REPLACE YOUR EXISTING $("#btn__letter").on("click"...) WITH THIS:
 
-    // Set the letter title and content instantly
-    document.querySelector(".title__letter").textContent = titleLetter;
-    document.querySelector(".text__letter p").textContent = datatxtletter;
+        $("#btn__letter").on("click", function () {
+            // 1. Show the modal instantly
+            $(".boxMail").addClass("active");
 
-    // Add animation classes instantly
-    document.querySelector("#heart__letter").classList.add("animationOp");
-    document.querySelector(".love__img").classList.add("animationOp");
-    document.querySelector("#mewmew").classList.add("animationOp");
-    document.querySelectorAll(".heart").forEach(item => item.classList.add("animation"));
-
-    // Show the birthday message card in boxMail instantly
-    $(".boxMail").addClass("active");
-});
+            // 2. Wait 2 seconds (2000ms), then open the card automatically
+            setTimeout(function () {
+                $(".boxMail-container").addClass("open");
+            }, 2000);
+        });
 
     $(".close").on("click", function () {
         clearInterval(intervalContent)
@@ -238,8 +231,13 @@
     }
 
     close.addEventListener('click', function () {
-        boxmail.classList.remove('active')
-    })
+            // 1. Hide the popup box
+            boxmail.classList.remove('active');
+
+            // 2. Reset the card so it closes (removes the .open class)
+            // This ensures the animation plays again next time!
+            document.querySelector(".boxMail-container").classList.remove("open");
+        })
 </script>
 
 </html>

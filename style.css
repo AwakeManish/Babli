@@ -922,19 +922,29 @@ body {
     transform: translate(20px, 20px);
     box-shadow: -1px -1px 5px rgb(0, 0, 0, 0.4);
 }
-.boxMail .boxMail-container .card2 h3{
+/* style.css */
+
+.boxMail .boxMail-container .card2 h3 {
     font-family: 'Dancing Script', cursive;
     padding: 20px 0px 10px 60px;
-    opacity: 0;
-    visibility: hidden;
+    /* Changed from 0 to 1 so it is always visible */
+    opacity: 1;
+    /* Changed from hidden to visible */
+    visibility: visible;
     font-size: 25px;
     text-shadow: 0 0 8px #FF7882;
+    /* Optional: Keep a small transition for smooth sizing if needed */
+    transition: all 0.5s;
 }
-.boxMail .boxMail-container .card2:hover h3{
+
+/* You can DELETE or Comment out the entire .card2:hover h3 animation block */
+/* .boxMail .boxMail-container .card2:hover h3{
     animation: texth3 3s forwards;
     animation-delay: 2s;
     transition: 1s;
-}
+} 
+*/
+
 @keyframes texth3{
     0%{
         opacity: 1;
@@ -947,18 +957,26 @@ body {
         padding: 20px 0px 10px 152px; 
     }
 }
-.boxMail .boxMail-container .card2 h2{
+/* style.css */
+
+.boxMail .boxMail-container .card2 h2 {
     font-family: 'Dancing Script', cursive;
     padding: 0px 20px;
     text-indent: 20px;
     font-size: 22px;
-    opacity: 0;
+    /* Changed from 0 to 1 so it is always visible */
+    opacity: 1;
 }
+
+/* You can DELETE or Comment out the entire .card2:hover h2 animation block */
+/*
 .boxMail .boxMail-container .card2:hover h2{
     animation: texth2 2s forwards;
     animation-delay: 4s;
     transition: 1s;
 }
+*/
+
 @keyframes texth2{
     0%{
         opacity: 0;
@@ -967,13 +985,21 @@ body {
         opacity: 1;
     }
 }
-.boxMail .boxMail-container .card2 .card2-content .imageCute2{
+/* style.css */
+
+.boxMail .boxMail-container .card2 .card2-content .imageCute2 {
     position: absolute;
     top: 5px;
     left: 20px;
-    opacity: 0;
+    /* You can adjust this to left: 100px if you want it in the final position */
+    opacity: 1;
+    /* Make visible immediately */
     transition: 1s;
 }
+
+/* Optional: You can keep the rotation animation if you want, 
+   but remove the 'animation-delay' line inside the hover block 
+   if you keep it. */
 .boxMail .boxMail-container .card2 .card2-content:hover .imageCute2{
     animation: cute3 1s linear infinite,
                 cute4 3s 2s forwards;
@@ -1022,4 +1048,49 @@ body {
     cursor: pointer;
     color: white;
     z-index: 10000000000000000;
+}
+
+/* ADD THIS TO THE BOTTOM OF STYLE.CSS */
+
+/* 1. Rotate the container when open */
+.boxMail .boxMail-container.open {
+    transform: rotate(-5deg);
+    filter: drop-shadow(0 0 10px #FF7882);
+}
+
+/* 2. Flip the front card (card1) away */
+.boxMail .boxMail-container.open .card1 {
+    transform: translate(-187px, -250px) rotateY(-140deg);
+}
+
+/* 3. Move the inside content (card2) into view */
+.boxMail .boxMail-container.open .card2-content {
+    transform: translate(20px, 20px);
+    box-shadow: -1px -1px 5px rgb(0, 0, 0, 0.4);
+}
+
+/* 4. Animate the "To You" (h3) text */
+.boxMail .boxMail-container.open .card2 h3 {
+    animation: texth3 3s forwards;
+    animation-delay: 0.5s;
+    /* Small delay so it starts as card opens */
+    transition: 1s;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 5. Animate the Main Message (h2) text */
+.boxMail .boxMail-container.open .card2 h2 {
+    animation: texth2 2s forwards;
+    animation-delay: 1s;
+    /* Starts after the header */
+    transition: 1s;
+    opacity: 1;
+}
+
+/* 6. Animate the cute image */
+.boxMail .boxMail-container.open .card2 .card2-content .imageCute2 {
+    animation: cute3 1s linear infinite, cute4 3s 0.5s forwards;
+    transition: 1s;
+    opacity: 1;
 }
